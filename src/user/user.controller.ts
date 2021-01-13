@@ -1,14 +1,15 @@
 import { Body, Controller, Post } from "@nestjs/common";
+import { UserService } from "./user.service";
 
 @Controller('users')
 
 export class UserCotroller {
-    private users = [];
+    private userService = new UserService();
 
     @Post()
     public create(@Body() user){
-        this.users.push(user);
+        const userCreate = this.userService.create(user);
 
-        return user;
+        return userCreate;
     }
 }
